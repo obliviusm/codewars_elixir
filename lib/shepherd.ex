@@ -94,3 +94,9 @@ defmodule Shepherd11 do
     Enum.map(sheeps, fn(x) -> if x, do: 1, else: 0 end) |> Enum.sum
   end
 end
+
+defmodule Shepherd12 do
+  def count_sheeps(sheeps) do
+    (sheeps -- List.duplicate(false, length(sheeps))) |> length
+  end
+end
