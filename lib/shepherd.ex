@@ -69,6 +69,7 @@ defmodule Shepherd8 do
   defp counter({:ok, list}), do: list
 
   def count_sheeps(sheeps) do
+    # alternative: split_with
     Enum.group_by(sheeps, &(&1)) |> Map.fetch(true) |> counter |> Enum.count
   end
 end
@@ -82,7 +83,14 @@ end
 defmodule Shepherd10 do
   def accumulate(true, acc), do: acc + 1
   def accumulate(false, acc), do: acc
+
   def count_sheeps(sheeps) do
     Enum.reduce(sheeps, 0, &accumulate/2)
+  end
+end
+
+defmodule Shepherd11 do
+  def count_sheeps(sheeps) do
+    Enum.map(sheeps, fn(x) -> if x, do: 1, else: 0 end) |> Enum.sum
   end
 end
