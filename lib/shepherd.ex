@@ -100,3 +100,14 @@ defmodule Shepherd12 do
     (sheeps -- List.duplicate(false, length(sheeps))) |> length
   end
 end
+
+defmodule Shepherd13 do
+  def count_sheeps(sheeps, acc \\ 0) do
+    new_sheeps = List.delete sheeps, true
+    if new_sheeps == sheeps do
+      acc
+    else
+      count_sheeps new_sheeps, acc + 1
+    end
+  end
+end
